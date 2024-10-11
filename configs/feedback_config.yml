@@ -1,0 +1,57 @@
+prompt:
+  - "Technical Feedback for candidate in numerical points Be specific and objective and generate the response in JSON: Use examples and observations to support your feedback. This helps candidates understand their strengths and areas for improvement.Make it constructive and actionable: Frame feedback constructively. Focus on how the candidate can enhance their skills and performance. Offer actionable suggestions or resources they can use for growth.Encourage growth and development: Provide guidance on how candidates can enhance their skills or qualifications. Suggest courses or areas of focus that can help them improve their chances in the future. Only focus on the four parameters: question, area of improvement, strength, suggestions. Don't give any other parameter even if they are needed. If candidate's response is completely not related to the context or empty then award to 0 out of 10 as rating. If candidate response is related to 80% as per interview standards then provide rating out of 10. if candidate_response is empty then give 0 as rating. Question: {question}, Candidate Response: {candidate_response} Expected output format: {expected_output_format}"
+  - "If Strength is empty or N/A couldn't able to provide for that field then provide the Strength as No data found"
+  - "Evaluate for every question and provide the feedback"
+expected_output_format:
+  - "{'question': 'Question 1', 'area_of_improvement': 'Area of improvement 1', 'strength': 'Strength 1', 'suggestions': 'Suggestions 1', 'Rating': 'Rating out of 10'}"
+overal_feedback_prompt: |
+  Technical Feedback: rate it out of 10 and provide feedback lines for the candidate. Be specific and objective: Use examples and observations to support your feedback. This helps candidates understand their strengths and areas for improvement. Make it constructive and actionable: Frame feedback constructively. Focus on how the candidate can enhance their technical skills and performance. Offer actionable suggestions or resources they can use for growth. Encourage growth and development: Provide guidance on how candidates can enhance their technical skills or qualifications. Suggest courses or areas of focus that can help them improve their chances in the future. Keep the response in proper JSON format with key as overall_score and feedback. Provide feedback using the format below:
+
+  ## Overall Technical Feedback format 
+
+  **Overall Rating: out of 10, Rating based on the each question wise feedback rating, take average of those question wise feedback** 
+
+  **Sum: Sum of all the question wise feedback ratings**
+
+  Summary: This candidate demonstrates a strong understanding of various machine learning concepts and approaches. They provide thoughtful answers that reflect their experience in the field.
+
+  **Strengths:** 
+
+  * **Clear explanations:**  The candidate uses simple language and relatable examples to explain complex machine learning topics like overfitting, underfitting, ensemble learning, and outlier handling. For example, their analogy of the helmet impact in the Kaggle competition is a great way to simplify a real-world problem.
+
+  * **Practical experience:** The candidate shares their experience with real-world machine learning projects, specifically mentioning their work on ranking algorithms for software engineers. This provides valuable context and demonstrates their ability to apply theoretical knowledge to practical scenarios.
+
+  * **Focus on model evaluation:** The candidate understands the importance of evaluating model performance using metrics like precision, recall, and loss/cost functions. This shows their understanding of the need for rigorous model validation.
+
+  * **Good communication:** The candidate speaks clearly and confidently, which is important for effective communication in technical roles.
+
+  **Areas for Improvement:**
+
+  * **Model Selection:** While the candidate mentions using logistic regression and gradient boosting trees, they don't go into detail about the factors they consider when choosing between different algorithms. They could further explain the trade-offs between different algorithms based on factors like data size, complexity, and interpretability.
+
+  * **Underfitting:** The candidate primarily focuses on overfitting and briefly touches on underfitting. Expanding on underfitting techniques, such as adding more features or exploring different models with higher complexity, would demonstrate a broader understanding.
+
+  * **Additional Resources:** The candidate could benefit from exploring more advanced ensemble learning techniques, such as stacking and boosting algorithms.
+
+  **Actionable Suggestions:** 
+
+  * **Research model selection strategies:** Investigate the "bias-variance trade-off" and explore different techniques for choosing the best model for specific datasets.
+
+  * **Dive deeper into underfitting:** Study various methods for addressing underfitting, including feature engineering and model selection strategies.
+
+  * **Explore advanced ensemble learning:** Research stacking and boosting algorithms like XGBoost and AdaBoost to expand their ensemble learning knowledge.
+
+  * **Practice applying concepts:** Continue participating in Kaggle competitions or other ML challenges to gain hands-on experience and apply their knowledge to real-world scenarios.
+
+  **Encouragement & Development:** 
+
+  The candidate's strong foundation and clear communication make them a valuable asset. By further exploring advanced machine learning concepts and applying their knowledge in practical settings, they can enhance their technical skills and become a more well-rounded machine learning engineer.
+  
+  Kindly Don't give me a same example for my actual response just give me a response based on my question_feedback ensure that once.
+
+  For any cases don't change the format of the response it will affect in the frontend it's very important Actionable Suggestions, Encouragement & Development and Strengths should be in array format.
+
+  If Strength is empty or N/A couldn't able to provide for that field then provide the Strength as ["No data found"]
+  **Overall Feedback:**
+  {question_feedback}
+

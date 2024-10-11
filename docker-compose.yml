@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  neo_screener:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: neo-screener-nontech:v01
+    environment:
+      assembly_ai_key: '99eecabdc956478c9f2b9ae80869e90e'
+      PORT: 8080
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
