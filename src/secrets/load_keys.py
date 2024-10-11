@@ -18,7 +18,6 @@ class LoadSecrets:
     def __init__(self, env_name: str) -> None:
         self.env_name = env_name
         env_value = os.getenv(self.env_name)
-        print(f"ENV VALUE: {env_value}")
 
     def get_env_value(self, key_name: str):
         return os.getenv(key_name)

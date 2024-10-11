@@ -214,7 +214,6 @@ def retrieve_student_course_info(results: dict, db_config: dict) -> dict:
                     """
                     cursor.execute(query)
                     result = cursor.fetchone()
-                    print("result",result)
                     if result:
                         logger.info(f"Retrieved student_course info for s_question_id {s_question_id}")
                         return result

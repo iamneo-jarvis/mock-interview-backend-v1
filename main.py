@@ -60,8 +60,6 @@ db_config = {
     'password':LoadSecrets('MY_SQL_PASSWORD_ACC').get_env_value('MY_SQL_PASSWORD_ACC'),
     'database':LoadSecrets('DATABASE').get_env_value('DATABASE'),
 }
-print("db_config-->",db_config)
-
 #REF : Please check with business on the response that we send. Since running as background proccess giving 200 will not be useful.
 @app.post("/neo-screener")
 async def screener(data: List[dict], background_tasks: BackgroundTasks):
@@ -85,15 +83,12 @@ async def process_data(data: List[dict]):
     if validation_status:
         try:
             tasks = [process_task(doc) for doc in data]
-            print("hello praveen-->",tasks)
             responses = await asyncio.gather(*tasks)
             status:bool = insert_data_into_mysql(json_array=responses, db_config=db_config)
-            # print("status",status)
             if status:
                 # Call test-level-feedback after processing neo-screener tasks
                 response_overall_feedback = retrieve_student_course_info(results=responses,db_config=db_config)
                 await update_student_questions(results=responses, db_config=db_config)
-                print("response_overall_feedback",response_overall_feedback)
                 feedback_data = OveralFeedback(
                     user_id=response_overall_feedback['user_id'],  # Assuming you have this information in responses
                     test_id=response_overall_feedback['t_id'],  # Adjust according to your data structure
@@ -117,7 +112,6 @@ async def test_level_feedback(data:OveralFeedback)->None:
                              data.attempt_no,
                              data.course_id,
                              db_config)
-        print("result-->",result)
         result.process_pipeline()
         return {"message": "Overall feedback processed successfully"}
     except Exception as e:
