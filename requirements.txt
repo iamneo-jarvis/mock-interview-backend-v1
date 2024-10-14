@@ -1,7 +1,7 @@
 fastapi==0.112.0
-assemblyai==0.31.0
+assemblyai==0.34.0
 python-dotenv==1.0.1
-pydantic==2.5.0
+pydantic==2.9.2
 jsonschema==4.23.0
 uvicorn[standard]==0.30.5
 requests==2.32.3
@@ -9,7 +9,7 @@ gunicorn==23.0.0
 mysql-connector-python==9.0.0
 google-cloud==0.34.0  
 google-cloud-storage==2.18.2  
-pyyaml==5.4.1
-boto3==boto3  
-langchain==1.35.38
+pyyaml==6.0.2
+boto3==1.35.39
+langchain==0.3.3
 langchain-google-genai==2.0.1

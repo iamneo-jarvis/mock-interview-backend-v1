@@ -14,8 +14,7 @@ import uvicorn
 from typing import List
 import asyncio
 import multiprocessing
-from src.secrets.load_keys import LoadSecrets
-
+from src.secrets.load_keys import LoadSecret
 # initialise app
 app = FastAPI(
     title='Neo screener',
@@ -23,7 +22,6 @@ app = FastAPI(
     version='2.0'
 )
 
-#Todo: Move all orgins to ENV
 # define cors policy
 origins = [
     'http://localhost',
@@ -53,13 +51,16 @@ app.add_middleware(
     allow_headers=['*'],
     expose_headers=['*'],
 )
-        
+
+load_secret_instance = LoadSecret()
+
 db_config = {
-    'host':LoadSecrets('MY_SQL_HOST_ACC').get_env_value('MY_SQL_HOST_ACC'),
-    'user':LoadSecrets('MY_SQL_USER_ACC').get_env_value('MY_SQL_USER_ACC'),
-    'password':LoadSecrets('MY_SQL_PASSWORD_ACC').get_env_value('MY_SQL_PASSWORD_ACC'),
-    'database':LoadSecrets('DATABASE').get_env_value('DATABASE'),
+    'host':load_secret_instance.get_secret('MY_SQL_HOST_ACC'),
+    'user':load_secret_instance.get_secret('MY_SQL_USER_ACC'),
+    'password':load_secret_instance.get_secret('MY_SQL_PASSWORD_ACC'),
+    'database':load_secret_instance.get_secret('DATABASE'),
 }
+print(db_config)
 #REF : Please check with business on the response that we send. Since running as background proccess giving 200 will not be useful.
 @app.post("/neo-screener")
 async def screener(data: List[dict], background_tasks: BackgroundTasks):

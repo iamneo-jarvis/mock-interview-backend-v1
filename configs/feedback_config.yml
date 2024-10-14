@@ -11,8 +11,6 @@ overal_feedback_prompt: |
 
   **Overall Rating: out of 10, Rating based on the each question wise feedback rating, take average of those question wise feedback** 
 
-  **Sum: Sum of all the question wise feedback ratings**
-
   Summary: This candidate demonstrates a strong understanding of various machine learning concepts and approaches. They provide thoughtful answers that reflect their experience in the field.
 
   **Strengths:** 

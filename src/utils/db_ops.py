@@ -19,7 +19,7 @@ async def update_section_wise_marks(db_config: dict, test_id: str) -> None:
         # Connect to the database
         connection = mysql.connector.connect(**db_config)
         cursor = connection.cursor(dictionary=True)
-
+        
         # Fetch the template data for the given test
         query = f"""
             SELECT t.t_id, t.t_name, t.t_type, tt.template_data
